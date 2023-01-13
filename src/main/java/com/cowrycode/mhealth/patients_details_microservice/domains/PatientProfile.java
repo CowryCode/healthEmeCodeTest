@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -22,12 +22,6 @@ public class PatientProfile extends BaseEntity{
     private String emailAddress;
     private String userLanguage;
     private String services; // List of ID of all services (separated by comma)user subscribed to
-    @Transient
-    private String contactPersonName;
-    @Transient
-    private String contactPhoneNumber;
-    @Transient
-    private String contactEmailAddress;
-    @Transient
-    private String contactentityownerIdentifier;
+    @OneToOne
+    private ContactPerson contactPerson;
 }
