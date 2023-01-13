@@ -1,4 +1,4 @@
-package com.cowrycode.mhealth.provider_services_microservice.domains;
+package com.cowrycode.mhealth.provider_details_microservice.domains;
 
 import lombok.Data;
 

@@ -8,6 +8,10 @@ import com.cowrycode.mhealth.patients_details_microservice.repositories.ContactP
 import com.cowrycode.mhealth.patients_details_microservice.repositories.PatientProfileRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class PatientProfileServiceImpl implements PatientProfileService {
     private final PatientProfileRepo patientProfileRepo;
@@ -35,10 +39,24 @@ public class PatientProfileServiceImpl implements PatientProfileService {
     }
 
     @Override
-    public PatientProfileDTO getProfile(Long ownerIdentifer) {
+    public PatientProfileDTO getProfile(Long id) {
         try{
-            PatientProfile profile = patientProfileRepo.findPatientProfileByOwneridentifier(ownerIdentifer);
-            return patientMapper.entityToDTO(profile);
+            Optional<PatientProfile> optProfile = patientProfileRepo.findById(id);
+            if(optProfile.isPresent()){
+                return patientMapper.entityToDTO(optProfile.get());
+            }else {
+                return null;
+            }
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<PatientProfileDTO> getProviderPatients(String providerID) {
+        try{
+            List<PatientProfile> patientProfiles = patientProfileRepo.findPatientProfileByProvidersContainsIgnoreCase(providerID);
+            return patientProfiles.stream().map(patientMapper::entityToDTO).collect(Collectors.toList());
         }catch (Exception e){
             return null;
         }

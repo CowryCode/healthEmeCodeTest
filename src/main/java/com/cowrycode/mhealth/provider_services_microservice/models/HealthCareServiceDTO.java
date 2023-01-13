@@ -14,4 +14,6 @@ public class HealthCareServiceDTO {
     private Double price;
     private int priority;
     private String providers; // Collection of providers' ID separated by comma
+    private String patients;
+    private boolean subscribed; // This indicates if the User pulling this subscribes to this server - it is not saved on DB
 }

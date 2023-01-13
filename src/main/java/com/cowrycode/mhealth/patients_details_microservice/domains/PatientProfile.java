@@ -24,4 +24,5 @@ public class PatientProfile extends BaseEntity{
     private String services; // List of ID of all services (separated by comma)user subscribed to
     @OneToOne
     private ContactPerson contactPerson;
+    private String providers; // List of Providers ID (Separated by comma.) a user can subscribe to different services managed by different providers
 }

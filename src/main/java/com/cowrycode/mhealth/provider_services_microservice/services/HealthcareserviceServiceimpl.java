@@ -6,6 +6,9 @@ import com.cowrycode.mhealth.provider_services_microservice.models.HealthCareSer
 import com.cowrycode.mhealth.provider_services_microservice.repositories.HealthCareServiceRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class HealthcareserviceServiceimpl implements HealthcareserviceService{
     private final HealthCareServiceRepo healthCareServiceRepo;
@@ -20,6 +23,26 @@ public class HealthcareserviceServiceimpl implements HealthcareserviceService{
         try{
             HealthCareServiceEntity saveService = healthCareServiceRepo.save(healthCareServiceMapper.DTOtoEntity(healthCareServiceDTO));
             return healthCareServiceMapper.entityToDTO(saveService);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<HealthCareServiceDTO> getPatientSubscribedServices(String patietnID) {
+        try{
+            List<HealthCareServiceEntity> services = healthCareServiceRepo.findHealthCareServiceEntitiesByPatientsContainingIgnoreCase(patietnID);
+            return services.stream().map(healthCareServiceMapper::entityToDTO).collect(Collectors.toList());
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<HealthCareServiceDTO> getProviderSubscribedServices(String providerID) {
+        try{
+            List<HealthCareServiceEntity> services = healthCareServiceRepo.findHealthCareServiceEntitiesByProvidersContainingIgnoreCase(providerID);
+            return services.stream().map(healthCareServiceMapper::entityToDTO).collect(Collectors.toList());
         }catch (Exception e){
             return null;
         }

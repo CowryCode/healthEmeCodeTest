@@ -1,6 +1,5 @@
-package com.cowrycode.mhealth.patients_details_microservice.models;
+package com.cowrycode.mhealth.provider_details_microservice.models;
 
-import com.cowrycode.mhealth.patients_details_microservice.domains.ContactPerson;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientProfileDTO {
+public class ProviderProfileDTO {
     private Long id;
     private Long owneridentifier;
     private String username;
@@ -22,6 +21,6 @@ public class PatientProfileDTO {
     private String emailAddress;
     private String userLanguage;
     private String services; // List of ID of all services (separated by comma)user subscribed to
-    private ContactPerson contactPerson;
-    private String providers;
+    private String licenceNumber;
+    private String patients;
 }

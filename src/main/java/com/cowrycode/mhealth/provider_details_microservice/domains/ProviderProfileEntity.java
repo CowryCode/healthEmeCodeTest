@@ -1,18 +1,17 @@
-package com.cowrycode.mhealth.patients_details_microservice.models;
+package com.cowrycode.mhealth.provider_details_microservice.domains;
 
-import com.cowrycode.mhealth.patients_details_microservice.domains.ContactPerson;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientProfileDTO {
-    private Long id;
-    private Long owneridentifier;
+public class ProviderProfileEntity extends ProviderBaseEntity{
     private String username;
     private String firstName;
     private String lastName;
@@ -22,6 +21,6 @@ public class PatientProfileDTO {
     private String emailAddress;
     private String userLanguage;
     private String services; // List of ID of all services (separated by comma)user subscribed to
-    private ContactPerson contactPerson;
-    private String providers;
+    private String licenceNumber;
+    private String patients; // List of Patients ID (Separated by comma.) a user can subscribe to different services managed by different providers
 }
