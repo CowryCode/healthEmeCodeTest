@@ -7,6 +7,7 @@ import java.util.List;
 public interface PatientProfileService {
     PatientProfileDTO createProfile(PatientProfileDTO patientProfileDTO);
     PatientProfileDTO getProfile(Long id);
+    PatientProfileDTO getPrfoileByemail(String patientemail);
     List<PatientProfileDTO> getProviderPatients(String providerID);
     PatientProfileDTO updateProfile(PatientProfileDTO patientProfileDTO);
 }

@@ -30,6 +30,16 @@ public class ProviderProfileServiceIImpl implements ProviderProfileService {
     }
 
     @Override
+    public ProviderProfileDTO getProfileByEmail(String email) {
+        try{
+            ProviderProfileEntity profile = profileRepo.findProviderProfileEntityByEmailAddress(email);
+            return providerProfileMapper.entitiToDTO(profile);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
     public ProviderProfileDTO getProviderProfile(Long providerID) {
         try{
             Optional<ProviderProfileEntity> optProfile = profileRepo.findById(providerID);

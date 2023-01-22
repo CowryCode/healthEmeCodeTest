@@ -34,6 +34,7 @@ public class PatientProfileServiceImpl implements PatientProfileService {
             PatientProfile savedPatient = patientProfileRepo.save(profile);
             return patientMapper.entityToDTO(savedPatient);
         }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -44,6 +45,20 @@ public class PatientProfileServiceImpl implements PatientProfileService {
             Optional<PatientProfile> optProfile = patientProfileRepo.findById(id);
             if(optProfile.isPresent()){
                 return patientMapper.entityToDTO(optProfile.get());
+            }else {
+                return null;
+            }
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public PatientProfileDTO getPrfoileByemail(String patientemail) {
+        try{
+            PatientProfile optProfile = patientProfileRepo.findPatientProfileByEmailAddress(patientemail);
+            if(optProfile != null ){
+                return patientMapper.entityToDTO(optProfile);
             }else {
                 return null;
             }

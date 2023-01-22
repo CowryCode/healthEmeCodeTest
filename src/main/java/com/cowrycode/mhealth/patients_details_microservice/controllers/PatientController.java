@@ -1,5 +1,6 @@
 package com.cowrycode.mhealth.patients_details_microservice.controllers;
 
+import com.cowrycode.mhealth.authentication_microservice.services.AuthService;
 import com.cowrycode.mhealth.patients_details_microservice.models.PatientProfileDTO;
 import com.cowrycode.mhealth.patients_details_microservice.services.PatientProfileService;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,11 @@ import java.util.List;
 @RequestMapping("/mhealth/patient-service/v1")
 public class PatientController {
     final PatientProfileService patientProfileService;
+    final AuthService authService;
 
-    public PatientController(PatientProfileService patientProfileService) {
+    public PatientController(PatientProfileService patientProfileService, AuthService authService) {
         this.patientProfileService = patientProfileService;
+        this.authService = authService;
     }
 
     @PostMapping("/create-profile")
@@ -24,6 +27,23 @@ public class PatientController {
         //TODO: AUTHENTICATE VIA LOGIN SERVICE LOGIN
         try{
             PatientProfileDTO profileDTO = patientProfileService.createProfile(patientProfileDTO);
+            if(profileDTO != null){
+                return new ResponseEntity<>(profileDTO, HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+        }
+    }
+
+    @GetMapping("/get-login")
+    public ResponseEntity<PatientProfileDTO> login(HttpServletRequest request){
+        //TODO: GET ID FROM LOGIN
+        String useremail = authService.getIdentifier(request);
+        try{
+            PatientProfileDTO profileDTO = patientProfileService.getPrfoileByemail(useremail);
             if(profileDTO != null){
                 return new ResponseEntity<>(profileDTO, HttpStatus.OK);
             }else {

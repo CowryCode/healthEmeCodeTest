@@ -9,4 +9,6 @@ public interface ProviderProfileRepo extends JpaRepository<ProviderProfileEntity
     List<ProviderProfileEntity> findProviderProfileEntitiesByServicesContainingIgnoreCase(String serviceID);
     List<ProviderProfileEntity> findProviderProfileEntitiesByPatientsContainingIgnoreCase(String serviceID);
 
+    ProviderProfileEntity findProviderProfileEntityByEmailAddress(String emailaddress);
+
 }

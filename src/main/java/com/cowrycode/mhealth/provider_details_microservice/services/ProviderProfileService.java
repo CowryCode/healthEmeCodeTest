@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ProviderProfileService {
     ProviderProfileDTO createProviderProfile(ProviderProfileDTO providerProfileDTO);
+
+    ProviderProfileDTO getProfileByEmail(String email);
     ProviderProfileDTO getProviderProfile(Long providerID);
     List<ProviderProfileDTO> getPatientProviders(String patientID);
     List<ProviderProfileDTO> getServiceProviders(String providerID);
