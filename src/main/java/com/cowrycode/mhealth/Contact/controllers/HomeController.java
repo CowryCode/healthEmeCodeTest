@@ -21,11 +21,13 @@ public class HomeController {
 
     @GetMapping("/")
     public ResponseEntity<String> start(){
+        System.out.println("GOT HERE 12345");
         return new ResponseEntity<>("HealthEme Backend is live !!!", HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/save-contact")
     public ResponseEntity<ContactDTO> createPatient(@RequestBody @Validated ContactDTO contact){
+
         try{
             ContactDTO savedContact = contactService.saveContact(contact);
             if(savedContact != null){
@@ -39,6 +41,7 @@ public class HomeController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/updatecontact/{id}")
     public ResponseEntity<ContactDTO> updateMyEntity(@PathVariable Long id, @RequestBody ContactDTO contact) {
         try{
@@ -54,10 +57,13 @@ public class HomeController {
         }
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/get-contacts")
     public ResponseEntity<List<ContactDTO>> updateMyEntity() {
+
         try{
             List<ContactDTO> contacts = contactService.getAllContacts();
+            System.out.println(contacts);
             if(contacts != null){
                 return new ResponseEntity<>(contacts, HttpStatus.OK);
             }else {
@@ -70,6 +76,7 @@ public class HomeController {
     }
 
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/remove-contact/{id}")
     public ResponseEntity<Void> deleteMyEntity(@PathVariable Long id) {
         contactService.deleteContact(id);

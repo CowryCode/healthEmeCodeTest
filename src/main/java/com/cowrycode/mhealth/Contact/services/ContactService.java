@@ -11,4 +11,7 @@ public interface ContactService {
 
     void  deleteContact(Long contactID);
 
+//    void uploadImage(Long contactID, ImageEntity imageEntity);
+
+
 }
