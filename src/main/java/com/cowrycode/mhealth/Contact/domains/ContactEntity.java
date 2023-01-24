@@ -21,9 +21,10 @@ public class ContactEntity extends BaseEntity {
     @Column(unique = true)
     private String phoneNumber;
     private String imgURL;
+    private LocalDateTime dateUpdated ;
 
     @PreUpdate
     public void onUpdate() {
-        setDateUpdated(LocalDateTime.now());
+        this.dateUpdated = LocalDateTime.now();
     }
 }

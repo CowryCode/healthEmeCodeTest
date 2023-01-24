@@ -4,10 +4,12 @@ import com.cowrycode.mhealth.Contact.domains.ContactEntity;
 import com.cowrycode.mhealth.Contact.mappers.ContactMapper;
 import com.cowrycode.mhealth.Contact.models.ContactDTO;
 import com.cowrycode.mhealth.Contact.repositories.ContactRepo;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ContactServiceImpl implements ContactService{
 
     private final ContactRepo contactRepo;

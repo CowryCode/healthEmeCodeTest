@@ -16,5 +16,4 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dateCreated = LocalDateTime.now();
-    private LocalDateTime dateUpdated ;
 }
