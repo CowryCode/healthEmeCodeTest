@@ -1,8 +1,6 @@
-package com.cowrycode.mhealth.patients_details_microservice.controllers;
+package com.cowrycode.mhealth.Contact.controllers;
 
 import com.cowrycode.mhealth.authentication_microservice.services.AuthService;
-import com.cowrycode.mhealth.patients_details_microservice.models.PatientProfileDTO;
-import com.cowrycode.mhealth.patients_details_microservice.services.PatientProfileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

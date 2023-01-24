@@ -1,4 +1,4 @@
-package com.cowrycode.mhealth.patients_details_microservice.domains;
+package com.cowrycode.mhealth.Contact.domains;
 
 import lombok.Data;
 
@@ -15,6 +15,6 @@ public class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long owneridentifier;
     private LocalDateTime dateCreated = LocalDateTime.now();
+    private LocalDateTime dateUpdated ;
 }
